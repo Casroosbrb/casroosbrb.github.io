@@ -46,10 +46,10 @@
             <div class="form-group strafbaar-feit">
                 <label for="strafbaarheid1">Strafbaarheid</label>
                 <select id="strafbaarheid1" name="strafbaarheid">
-                    <option value="wet1">Wet 1: Celstraf 2 jaar, Boete €5000</option>
-                    <option value="wet2">Wet 2: Celstraf 5 jaar, Boete €15000</option>
-                    <option value="wet3">Wet 3: Celstraf 1 jaar, Boete €1000</option>
-                    <option value="wet4">Art 3 sr: Celstraf 1 jaar, Boete €1000</option>
+                    <option value="wet1">Wet 1: Celstraf 2 maanden, Boete €5000</option>
+                    <option value="wet2">Wet 2: Celstraf 5 maanden, Boete €15000</option>
+                    <option value="wet3">Wet 3: Celstraf 1 maanden, Boete €1000</option>
+                    <option value="wet4">Art 3 sr: Celstraf 1 maanden, Boete €1000</option>
                     <option value="wet5">Artikel I-1 Diefstal (Eerste Veroordeling): Celstraf 15 maanden, Boete €5000</option>
                     <option value="wet6">Artikel I-1 Diefstal (Meerdere Veroordelingen): Celstraf 30 maanden, Boete €8000</option>
                     <option value="wet7">Artikel I-2 Overval (Eerste Veroordeling): Celstraf 30 maanden, Boete €10000</option>
@@ -290,10 +290,10 @@ function voegStrafbaarFeitToe() {
             newFeit.innerHTML = `
                 <label for="strafbaarheid${feitCount}">Strafbaarheid</label>
                 <select id="strafbaarheid${feitCount}" name="strafbaarheid">
-                    <option value="wet1">Wet 1: Celstraf 2 jaar, Boete €5000</option>
-                    <option value="wet2">Wet 2: Celstraf 5 jaar, Boete €15000</option>
-                    <option value="wet3">Wet 3: Celstraf 1 jaar, Boete €1000</option>
-                    <option value="wet4">Art 3 sr: Celstraf 1 jaar, Boete €1000</option>
+                    <option value="wet1">Wet 1: Celstraf 2 maanden, Boete €5000</option>
+                    <option value="wet2">Wet 2: Celstraf 5 maanden, Boete €15000</option>
+                    <option value="wet3">Wet 3: Celstraf 1 maanden, Boete €1000</option>
+                    <option value="wet4">Art 3 sr: Celstraf 1 maanden, Boete €1000</option>
                     <option value="wet5">Artikel I-1 Diefstal (Eerste Veroordeling): Celstraf 15 maanden, Boete €5000</option>
                     <option value="wet6">Artikel I-1 Diefstal (Meerdere Veroordelingen): Celstraf 30 maanden, Boete €8000</option>
                     <option value="wet7">Artikel I-2 Overval (Eerste Veroordeling): Celstraf 30 maanden, Boete €10000</option>
@@ -424,18 +424,18 @@ function voegStrafbaarFeitToe() {
                 description: `De verdachte met Discord ID <@${discordID}> heeft de volgende strafbare feiten begaan:`,
                 fields: feiten.map((feit, index) => ({
                     name: `Feit ${index + 1}`,
-                    value: `Celstraf: ${feit.celstraf} jaar, Boete: €${feit.boete}`,
+                    value: `Celstraf: ${feit.celstraf} maanden, Boete: €${feit.boete}`,
                     inline: true
                 })),
                 footer: {
-                    text: `Totale strafeis: ${totaalCelstraf} jaar celstraf en een boete van €${totaalBoete}.`
+                    text: `Totale strafeis: ${totaalCelstraf} maanden celstraf en een boete van €${totaalBoete}.`
                 }
             };
 
             const rolTag = `<@&1246059855568179281>`;
             const persoonTag = `<@${discordID}>`;
 
-            document.getElementById('result').innerText = `De totale strafeis is ${totaalCelstraf} jaar celstraf en een boete van €${totaalBoete}.`;
+            document.getElementById('result').innerText = `De totale strafeis is ${totaalCelstraf} maanden celstraf en een boete van €${totaalBoete}.`;
 
             // Eerste fetch-aanroep voor het embed bericht en rol tag
             fetch('https://discord.com/api/webhooks/1243510151021989900/YeJWRIUhmw-JNbGgoqJDCR_97eSY7vM60Fu5Ejvo5BM2hzSq9cAe73D8D3Kfa1iyYSPK', {
