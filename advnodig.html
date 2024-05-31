@@ -108,9 +108,11 @@
                     inline: true
                 })),
                 footer: {
-                    text: `Totale strafeis: ${totaalCelstraf} jaar celstraf en een boete van €${totaalBoete}. <@&1246059855568179281>`
+                    text: `Totale strafeis: ${totaalCelstraf} jaar celstraf en een boete van €${totaalBoete}.`
                 }
             };
+
+            const rolTag = `<@&1246059855568179281>`;
 
             document.getElementById('result').innerText = `De totale strafeis is ${totaalCelstraf} jaar celstraf en een boete van €${totaalBoete}.`;
 
@@ -119,7 +121,10 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ embeds: [embed] })
+                body: JSON.stringify({
+                    embeds: [embed],
+                    content: rolTag
+                })
             }).then(response => {
                 if(response.ok) {
                     alert('Bericht succesvol verstuurd naar Discord');
