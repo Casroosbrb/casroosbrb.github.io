@@ -423,14 +423,14 @@ function voegStrafbaarFeitToe() {
                 title: "Strafbare Feiten",
                 description: `De verdachte met Discord ID <@${discordID}> heeft de volgende strafbare feiten begaan:`,
                 fields: feiten.map((feit, index) => ({
-                    name: `Feit ${index + 1}`,
-                    value: `Celstraf: ${feit.celstraf} maanden, Boete: €${feit.boete}`,
+                    name: `Artikel ${feit.artikelnummer}`,
+                    value: `Celstraf: ${feit.celstraf} jaar, Boete: €${feit.boete}`,
                     inline: true
                 })),
                 footer: {
-                    text: `Totale strafeis: ${totaalCelstraf} maanden celstraf en een boete van €${totaalBoete}.`
+                    text: `Totale strafeis: ${totaalCelstraf} jaar celstraf en een boete van €${totaalBoete}.`
                 }
-            };
+                    };
 
             const rolTag = `<@&1037000611062894682>`;
             const persoonTag = `<@${discordID}>`;
