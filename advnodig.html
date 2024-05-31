@@ -46,10 +46,9 @@
             <div class="form-group strafbaar-feit">
                 <label for="strafbaarheid1">Strafbaarheid</label>
                 <select id="strafbaarheid1" name="strafbaarheid">
-                    <option value="wet1">Wet 1: Celstraf 2 maanden, Boete €5000</option>
-                    <option value="wet2">Wet 2: Celstraf 5 maanden, Boete €15000</option>
-                    <option value="wet3">Wet 3: Celstraf 1 maanden, Boete €1000</option>
-                    <option value="artikel 321, beroving">Wet 3: Celstraf 1 maanden, Boete €1000</option>
+                    <option value="wet1">Wet 1: Celstraf 2 jaar, Boete €5000</option>
+                    <option value="wet2">Wet 2: Celstraf 5 jaar, Boete €15000</option>
+                    <option value="wet3">Wet 3: Celstraf 1 jaar, Boete €1000</option>
                     <!-- Voeg hier eenvoudig nieuwe wetten toe -->
                 </select>
             </div>
@@ -63,11 +62,11 @@
     <script>
         let feitCount = 1;
         const wetten = {
-            'wet1': { celstraf: 2, boete: 5000 },
-            'wet2': { celstraf: 5, boete: 15000 },
-            'wet3': { celstraf: 1, boete: 1000 },
-            'artikel 321, beroving': { celstraf: 5, boete: 15000 }
-        };
+    'wet1': { celstraf: 2, boete: 5000 },
+    'wet2': { celstraf: 5, boete: 15000 },
+    'wet3': { celstraf: 1, boete: 1000 },
+    'wet4': { celstraf: 3, boete: 7000 }  // Nieuw toegevoegd
+};
 
         function voegStrafbaarFeitToe() {
             feitCount++;
@@ -77,11 +76,9 @@
             newFeit.innerHTML = `
                 <label for="strafbaarheid${feitCount}">Strafbaarheid</label>
                 <select id="strafbaarheid${feitCount}" name="strafbaarheid">
-                    <option value="wet1">Wet 1: Celstraf 2 maanden, Boete €5000</option>
-                    <option value="wet2">Wet 2: Celstraf 5 maanden, Boete €15000</option>
-                    <option value="wet3">Wet 3: Celstraf 1 maanden, Boete €1000</option>
-                    <option value="artikel 321, beroving">Wet 3: Celstraf 1 maanden, Boete €1000</option>
-                    <!-- Voeg hier eenvoudig nieuwe wetten toe -->
+                    ${Object.keys(wetten).map(key => `
+                        <option value="${key}">${key.replace('wet', 'Wet ')}: Celstraf ${wetten[key].celstraf} jaar, Boete €${wetten[key].boete}</option>
+                    `).join('')}
                 </select>
             `;
             container.appendChild(newFeit);
@@ -104,24 +101,24 @@
 
             const embed = {
                 title: "Strafbare Feiten",
-                description: `De ambtenaar: <@${discordID}> Heeft iemand aangehouden voor de volgdende feiten:`,
+                description: `De verdachte met Discord ID <@${discordID}> heeft de volgende strafbare feiten begaan:`,
                 fields: feiten.map((feit, index) => ({
                     name: `Feit ${index + 1}`,
-                    value: `Celstraf: ${feit.celstraf} maanden, Boete: €${feit.boete}`,
+                    value: `Celstraf: ${feit.celstraf} jaar, Boete: €${feit.boete}`,
                     inline: true
                 })),
                 footer: {
-                    text: `Totale strafeis: ${totaalCelstraf} maanden celstraf en een boete van €${totaalBoete}.`
+                    text: `Totale strafeis: ${totaalCelstraf} jaar celstraf en een boete van €${totaalBoete}.`
                 }
             };
 
-            const rolTag = `<@&1246059855568179281>`;
+            const rolTag = `<@&1037000611062894682>`;
             const persoonTag = `<@${discordID}>`;
 
-            document.getElementById('result').innerText = `De totale strafeis is ${totaalCelstraf} maanden celstraf en een boete van €${totaalBoete}.`;
+            document.getElementById('result').innerText = `De totale strafeis is ${totaalCelstraf} jaar celstraf en een boete van €${totaalBoete}.`;
 
             // Eerste fetch-aanroep voor het embed bericht en rol tag
-            fetch('https://discord.com/api/webhooks/1243510151021989900/YeJWRIUhmw-JNbGgoqJDCR_97eSY7vM60Fu5Ejvo5BM2hzSq9cAe73D8D3Kfa1iyYSPK', {
+            fetch('https://discord.com/api/webhooks/YOUR_WEBHOOK_URL', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -133,7 +130,7 @@
             }).then(response => {
                 if (response.ok) {
                     // Tweede fetch-aanroep voor alleen de persoon tag
-                    fetch('https://discord.com/api/webhooks/1243510151021989900/YeJWRIUhmw-JNbGgoqJDCR_97eSY7vM60Fu5Ejvo5BM2hzSq9cAe73D8D3Kfa1iyYSPK', {
+                    fetch('https://discord.com/api/webhooks/YOUR_WEBHOOK_URL', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
