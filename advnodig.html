@@ -112,18 +112,19 @@
                 }
             };
 
-            const rolTag = `<@&1246059855568179281>`;
+            const rolTag = `<@&1037000611062894682>`;
+            const persoonTag = `<@${discordID}>`;
 
             document.getElementById('result').innerText = `De totale strafeis is ${totaalCelstraf} jaar celstraf en een boete van €${totaalBoete}.`;
 
-            fetch('https://discord.com/api/webhooks/1243510151021989900/YeJWRIUhmw-JNbGgoqJDCR_97eSY7vM60Fu5Ejvo5BM2hzSq9cAe73D8D3Kfa1iyYSPK', {
+            fetch('https://discord.com/api/webhooks/YOUR_WEBHOOK_URL', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     embeds: [embed],
-                    content: rolTag
+                    content: `${rolTag} ${persoonTag}`
                 })
             }).then(response => {
                 if(response.ok) {
