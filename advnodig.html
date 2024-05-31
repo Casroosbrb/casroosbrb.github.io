@@ -432,13 +432,13 @@ function voegStrafbaarFeitToe() {
                 }
             };
 
-            const rolTag = `<@&1246059855568179281>`;
+            const rolTag = `<@&1037000611062894682>`;
             const persoonTag = `<@${discordID}>`;
 
             document.getElementById('result').innerText = `De totale strafeis is ${totaalCelstraf} maanden celstraf en een boete van €${totaalBoete}.`;
 
             // Eerste fetch-aanroep voor het embed bericht en rol tag
-            fetch('https://discord.com/api/webhooks/1243510151021989900/YeJWRIUhmw-JNbGgoqJDCR_97eSY7vM60Fu5Ejvo5BM2hzSq9cAe73D8D3Kfa1iyYSPK', {
+            fetch('https://discord.com/api/webhooks/1246078930310660197/QjzhuT6YLNwwPHqLXT4KUVvDL644FNTyqiB6wtwI1qDBQ1MXZ341_mjZko1hess2nJ42', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -450,7 +450,7 @@ function voegStrafbaarFeitToe() {
             }).then(response => {
                 if (response.ok) {
                     // Tweede fetch-aanroep voor alleen de persoon tag
-                    fetch('https://discord.com/api/webhooks/1243510151021989900/YeJWRIUhmw-JNbGgoqJDCR_97eSY7vM60Fu5Ejvo5BM2hzSq9cAe73D8D3Kfa1iyYSPK', {
+                    fetch('https://discord.com/api/webhooks/1246078930310660197/QjzhuT6YLNwwPHqLXT4KUVvDL644FNTyqiB6wtwI1qDBQ1MXZ341_mjZko1hess2nJ42', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
