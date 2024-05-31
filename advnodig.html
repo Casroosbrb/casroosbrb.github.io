@@ -26,6 +26,12 @@
             padding: 10px;
             border: 1px solid #ccc;
         }
+        .strafbaar-feit {
+            margin-bottom: 10px;
+        }
+        .strafbaar-feit button {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -36,41 +42,84 @@
             <input type="text" id="discordID" name="discordID" placeholder="Bijvoorbeeld: 123456789012345678">
             <small>Om je Discord ID te krijgen: ga naar Instellingen > Geavanceerd > Ontwikkelaarsmodus inschakelen, daarna rechtsklik op je naam en kies 'Kopieer ID'.</small>
         </div>
-        <div class="form-group">
-            <label for="strafbaarheid">Strafbaarheid</label>
-            <select id="strafbaarheid" name="strafbaarheid">
-                <option value="wet1">Wet 1: Celstraf 2 jaar, Boete €5000</option>
-                <option value="wet2">Wet 2: Celstraf 5 jaar, Boete €15000</option>
-                <option value="wet3">Wet 3: Celstraf 1 jaar, Boete €1000</option>
-                <!-- Voeg hier eenvoudig nieuwe wetten toe -->
-            </select>
+        <div id="strafbareFeitenContainer">
+            <div class="form-group strafbaar-feit">
+                <label for="strafbaarheid1">Strafbaarheid</label>
+                <select id="strafbaarheid1" name="strafbaarheid">
+                    <option value="wet1">Wet 1: Celstraf 2 jaar, Boete €5000</option>
+                    <option value="wet2">Wet 2: Celstraf 5 jaar, Boete €15000</option>
+                    <option value="wet3">Wet 3: Celstraf 1 jaar, Boete €1000</option>
+                    <!-- Voeg hier eenvoudig nieuwe wetten toe -->
+                </select>
+            </div>
         </div>
+        <button type="button" onclick="voegStrafbaarFeitToe()">Voeg strafbaar feit toe</button>
         <button type="button" onclick="verwerkFormulier()">Verzenden</button>
     </form>
 
     <div id="result" class="result"></div>
 
     <script>
+        let feitCount = 1;
+        const wetten = {
+            'wet1': { celstraf: 2, boete: 5000 },
+            'wet2': { celstraf: 5, boete: 15000 },
+            'wet3': { celstraf: 1, boete: 1000 }
+        };
+
+        function voegStrafbaarFeitToe() {
+            feitCount++;
+            const container = document.getElementById('strafbareFeitenContainer');
+            const newFeit = document.createElement('div');
+            newFeit.className = 'form-group strafbaar-feit';
+            newFeit.innerHTML = `
+                <label for="strafbaarheid${feitCount}">Strafbaarheid</label>
+                <select id="strafbaarheid${feitCount}" name="strafbaarheid">
+                    <option value="wet1">Wet 1: Celstraf 2 jaar, Boete €5000</option>
+                    <option value="wet2">Wet 2: Celstraf 5 jaar, Boete €15000</option>
+                    <option value="wet3">Wet 3: Celstraf 1 jaar, Boete €1000</option>
+                    <!-- Voeg hier eenvoudig nieuwe wetten toe -->
+                </select>
+            `;
+            container.appendChild(newFeit);
+        }
+
         function verwerkFormulier() {
             const discordID = document.getElementById('discordID').value;
-            const strafbaarheid = document.getElementById('strafbaarheid').value;
-            const wetten = {
-                'wet1': { celstraf: 2, boete: 5000 },
-                'wet2': { celstraf: 5, boete: 15000 },
-                'wet3': { celstraf: 1, boete: 1000 }
-            };
-            
-            const straf = wetten[strafbaarheid];
-            const bericht = `De verdachte met Discord ID <@${discordID}> heeft de volgende strafbare feit begaan: ${strafbaarheid}. De strafeis is ${straf.celstraf} jaar celstraf en een boete van €${straf.boete}. <@&1246059855568179281>`;
-            
-            document.getElementById('result').innerText = `De strafeis is ${straf.celstraf} jaar celstraf en een boete van €${straf.boete}.`;
+            const feiten = [];
+            for (let i = 1; i <= feitCount; i++) {
+                const strafbaarheid = document.getElementById(`strafbaarheid${i}`).value;
+                feiten.push(wetten[strafbaarheid]);
+            }
 
-            fetch('https://discord.com/api/webhooks/1243510151021989900/YeJWRIUhmw-JNbGgoqJDCR_97eSY7vM60Fu5Ejvo5BM2hzSq9cAe73D8D3Kfa1iyYSPK', {
+            let totaalCelstraf = 0;
+            let totaalBoete = 0;
+            feiten.forEach(feit => {
+                totaalCelstraf += feit.celstraf;
+                totaalBoete += feit.boete;
+            });
+
+            const embed = {
+                title: "Strafbare Feiten",
+                description: `De verdachte met Discord ID <@${discordID}> heeft de volgende strafbare feiten begaan:`,
+                fields: feiten.map((feit, index) => ({
+                    name: `Feit ${index + 1}`,
+                    value: `Celstraf: ${feit.celstraf} jaar, Boete: €${feit.boete}`,
+                    inline: true
+                })),
+                footer: {
+                    text: `Totale strafeis: ${totaalCelstraf} jaar celstraf en een boete van €${totaalBoete}. <@&1037000611062894682>`
+                }
+            };
+
+            document.getElementById('result').innerText = `De totale strafeis is ${totaalCelstraf} jaar celstraf en een boete van €${totaalBoete}.`;
+
+            fetch('https://discord.com/api/webhooks/YOUR_WEBHOOK_URL', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ content: bericht })
+                body: JSON.stringify({ embeds: [embed] })
             }).then(response => {
                 if(response.ok) {
                     alert('Bericht succesvol verstuurd naar Discord');
