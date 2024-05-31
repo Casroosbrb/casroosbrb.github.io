@@ -172,9 +172,9 @@
     <script>
         let feitCount = 1;
         const wetten = {
-            'wet1': { celstraf: 2, boete: 5000, artikel: "Wet 1" },
-    'wet2': { celstraf: 5, boete: 15000, artikel: "Wet 2" },
-    'wet3': { celstraf: 1, boete: 1000, artikel: "Wet 3" },
+            'wet1': { artikelnummer: 137, celstraf: 2, boete: 5000 },
+            'wet2': { artikelnummer: 244, celstraf: 5, boete: 15000 },
+            'wet3': { artikelnummer: 87, celstraf: 1, boete: 1000 },
     'wet4': { celstraf: 1, boete: 1000, artikel: "Wet 4" },
     'wet5': { celstraf: 15, boete: 5000, artikel: "Wet 5" },
     'wet6': { celstraf: 30, boete: 8000, artikel: "Wet 6" },
@@ -434,7 +434,7 @@ function voegStrafbaarFeitToe() {
                 }
                     };
 
-            const rolTag = `<@&1037000611062894682>`;
+            const rolTag = `<@&10370006110628946821>`;
             const persoonTag = `<@${discordID}>`;
 
             document.getElementById('result').innerText = `De totale strafeis is ${totaalCelstraf} maanden celstraf en een boete van €${totaalBoete}.`;
