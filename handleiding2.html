@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boek 2: Basis rechten van een persoon</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #37474f;
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        #datetime {
+            font-size: 18px;
+        }
+        main {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #37474f;
+        }
+        .chapter {
+            background-color: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .chapter:hover {
+            transform: translateY(-5px);
+        }
+        footer {
+            background-color: #37474f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .chapter-content {
+            text-align: left;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="window.location.href = 'index.html';">Ga naar de homepagina</button>
+    <header>
+        <img src="OIP.JPEG" alt="Logo" class="logo"> <!-- Vervang 'logo.png' door de naam van je logo -->
+        <div id="datetime"></div>
+    </header>
+    <main>
+        <h1>Boek 2: Basis rechten van een persoon</h1>
+        <section class="chapter">
+            <h2>Hoofdstuk 1: Recht op Vrijheid en Veiligheid</h2>
+            <div class="chapter-content">
+                <p>Elk individu heeft recht op vrijheid en veiligheid. Dit betekent dat niemand willekeurig mag worden gearresteerd of gedetineerd. Het recht op vrijheid omvat ook de vrijheid van beweging, het recht om het land te verlaten en terug te keren, en de vrijheid van meningsuiting.</p>
+                <p>De veiligheid van personen is van groot belang, en de staat moet maatregelen nemen om burgers te beschermen tegen misdrijven en om een rechtvaardig rechtssysteem te handhaven dat individuen beschermt tegen onrechtvaardige behandelingen.</p>
+            </div>
+        </section>
+        <section class="chapter">
+            <h2>Hoofdstuk 2: Recht op Privacy</h2>
+            <div class="chapter-content">
+                <p>Privacy is een fundamenteel recht van elke persoon. Dit recht beschermt individuen tegen ongewenste inbreuken op hun persoonlijke leven, inclusief hun thuis, correspondentie, en communicatie. Het recht op privacy is essentieel voor de waardigheid en autonomie van individuen.</p>
+                <p>Overheden en bedrijven moeten de privacy van personen respecteren en beschermen door middel van regelgeving en handhaving. Inbreuken op de privacy moeten gerechtvaardigd en proportioneel zijn, en alleen plaatsvinden in uitzonderlijke omstandigheden.</p>
+            </div>
+        </section>
+        <section class="chapter">
+            <h2>Hoofdstuk 3: Recht op Gelijkheid en Non-discriminatie</h2>
+            <div class="chapter-content">
+                <p>Alle mensen zijn gelijk en hebben recht op gelijke behandeling zonder discriminatie op grond van ras, geslacht, leeftijd, religie, seksuele geaardheid, of andere kenmerken. Dit recht is essentieel voor het bevorderen van een rechtvaardige en inclusieve samenleving.</p>
+                <p>Wetgeving moet worden geïmplementeerd om discriminatie tegen te gaan en gelijkheid te bevorderen in alle aspecten van het leven, waaronder werkgelegenheid, onderwijs, en toegang tot diensten en faciliteiten.</p>
+            </div>
+        </section>
+        <section class="chapter">
+            <h2>Hoofdstuk 4: Recht op Onderwijs</h2>
+            <div class="chapter-content">
+                <p>Onderwijs is een fundamenteel mensenrecht dat noodzakelijk is voor de volledige ontwikkeling van een persoon. Iedereen heeft recht op toegang tot kwaliteitsvol onderwijs, zonder discriminatie. Onderwijs moet beschikbaar, toegankelijk, aanvaardbaar en aanpasbaar zijn voor alle kinderen en volwassenen.</p>
+                <p>De staat heeft de verantwoordelijkheid om een onderwijssysteem te ontwikkelen en te onderhouden dat tegemoetkomt aan de behoeften van de samenleving en de rechten van de individuele leerling respecteert.</p>
+            </div>
+        </section>
+        <section class="chapter">
+            <h2>Hoofdstuk 5: Recht op Gezondheidszorg</h2>
+            <div class="chapter-content">
+                <p>Gezondheidszorg is een basisrecht dat iedereen toegang moet hebben tot de nodige medische diensten en voorzieningen. Dit recht omvat zowel fysieke als mentale gezondheidszorg en vereist dat overheden adequate zorgsystemen onderhouden die voor iedereen toegankelijk zijn.</p>
+                <p>Het recht op gezondheidszorg betekent ook dat mensen moeten worden beschermd tegen schadelijke medische praktijken en dat er maatregelen moeten worden genomen om gezondheidsproblemen te voorkomen en te behandelen.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2024 Mijn Website. Alle rechten voorbehouden.
+    </footer>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const date = now.toLocaleDateString('nl-NL', options);
+            const time = now.toLocaleTimeString('nl-NL');
+            document.getElementById('datetime').textContent = `${date} ${time}`;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>

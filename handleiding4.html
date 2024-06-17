@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boek 3: Het verschil tussen primaire en secundaire rechten</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #37474f;
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        #datetime {
+            font-size: 18px;
+        }
+        main {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #37474f;
+        }
+        .chapter {
+            background-color: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .chapter:hover {
+            transform: translateY(-5px);
+        }
+        footer {
+            background-color: #37474f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .chapter-content {
+            text-align: left;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="window.location.href = 'index.html';">Ga naar de homepagina</button>
+    <header>
+        <img src="OIP.JPEG" alt="Logo" class="logo"> <!-- Vervang 'logo.png' door de naam van je logo -->
+        <div id="datetime"></div>
+    </header>
+    <main>
+        <h1>Handleiding: Het opstellen van Juridische Brieven</h1>
+        <section class="chapter">
+            <h2>Hoofdstuk 1: Begrijp het Doel van de Brief</h2>
+            <div class="chapter-content">
+                <p>Voordat je begint met het opstellen van een juridische brief, is het essentieel om het doel ervan te begrijpen. Wil je bijvoorbeeld een verzoek indienen, een standpunt verdedigen, of een juridische kwestie verduidelijken? Zorg ervoor dat het doel van de brief duidelijk is voordat je begint met schrijven.</p>
+            </div>
+        </section>
+        <section class="chapter">
+            <h2>Hoofdstuk 2: Gebruik Formele en Duidelijke Taal</h2>
+            <div class="chapter-content">
+                <p>Juridische brieven moeten worden geschreven in formele en duidelijke taal. Vermijd vakjargon en complexe zinnen die de boodschap kunnen vertroebelen. Houd de taal beknopt en gebruik specifieke juridische termen indien nodig, maar zorg ervoor dat de lezer de inhoud gemakkelijk kan begrijpen.</p>
+            </div>
+        </section>
+        <section class="chapter">
+            <h2>Hoofdstuk 3: Structuur de Brief Correct</h2>
+            <div class="chapter-content">
+                <p>De structuur van een juridische brief moet logisch en overzichtelijk zijn. Begin met een duidelijke introductie waarin het doel van de brief wordt uiteengezet, gevolgd door de kern van de boodschap en eventuele ondersteunende argumenten of bewijsmateriaal. Sluit af met een beknopte conclusie en eventuele vervolgstappen.</p>
+            </div>
+        </section>
+        <section class="chapter">
+            <h2>Hoofdstuk 4: Controleer en Bewerk Grondig</h2>
+            <div class="chapter-content">
+                <p>Na het opstellen van de brief is het van cruciaal belang om deze zorgvuldig te controleren en te bewerken. Controleer op grammaticale fouten, spelfouten en inconsistenties in de inhoud. Zorg ervoor dat alle feiten en wettelijke vereisten nauwkeurig zijn vermeld voordat de brief wordt verstuurd.</p>
+                <p>Klik op de onderstaande knop om de pagina te openen Voor voorbeelden:</p>
+                <button onclick="window.open('https://www.gratisvoorbeeldbrieven.nl/', '_blank')">Open Voorbeeldbrieven</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2024 Mijn Website. Alle rechten voorbehouden.
+    </footer>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const date = now.toLocaleDateString('nl-NL', options);
+            const time = now.toLocaleTimeString('nl-NL');
+            document.getElementById('datetime').textContent = `${date} ${time}`;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
