@@ -47,10 +47,12 @@ button:hover {
 
 /* Logo van de Orde van Advocaten */
 .logo {
-    display: block;
-    margin: 0 auto; /* Centreren van het logo */
-    max-width: 200px; /* Optioneel: aanpassen aan de grootte van het logo */
+    position: absolute;
+    top: 20px; /* Afstand vanaf de bovenkant van het venster */
+    left: 20px; /* Afstand vanaf de linkerzijde van het venster */
+    z-index: 999; /* Zorgt ervoor dat het logo bovenaan staat */
 }
+
 
 /* Dropdown-menu stijl */
 .dropdown {

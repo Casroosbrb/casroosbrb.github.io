@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactformulier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contactformulier</h1>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="discord_id">Wat is jouw Discord ID?</label>
+                <input type="text" id="discord_id" name="discord_id" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Wie heb je nodig?</label>
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Kies een rol</option>
+                    <option value="leiding">Leiding</option>
+                    <option value="bestuur">Bestuur</option>
+                    <option value="werving en selectie">Werving en Selectie</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="question">Wat is je vraag?</label>
+                <textarea id="question" name="question" rows="4" required></textarea>
+            </div>
+            <button type="submit">Versturen</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var discordID = document.getElementById('discord_id').value;
+            var role = document.getElementById('role').value;
+            var question = document.getElementById('question').value;
+
+            var rolesMap = {
+                "leiding": "<@&1036922058539544596>",
+                "bestuur": "<@&1065252226987204669>",
+                "werving en selectie": "<@&1065252379018137670>"
+            };
+
+            var roleTag = rolesMap[role];
+
+            if (!roleTag) {
+                console.error('Error: Ongeldige rol geselecteerd.');
+                return;
+            }
+
+            var message = {
+                content: roleTag,
+                embeds: [
+                    {
+                        title: "Nieuwe vraag",
+                        description: "Discord ID: " + discordID + "\nGewenste rol: " + role + "\nVraag: " + question
+                    }
+                ]
+            };
+
+            var webhookURL = "https://discord.com/api/webhooks/1247592439842345026/xVXCFAEPW-fOvui55o8CMrn3bWyUcT6DKqL-gQlFjdYHUhklFerEP90QreZwe6YTejCU";
+
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(message)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Er is een fout opgetreden bij het verzenden van het bericht.');
+                }
+                alert('Bedankt! Uw vraag is verzonden.');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Er is een fout opgetreden bij het verzenden van uw vraag. Probeer het later opnieuw.');
+            });
+        });
+    </script>
+</body>
+</html>

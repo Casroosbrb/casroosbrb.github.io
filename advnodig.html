@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strafbaarheidsformulier</title>
+    <title>Advocaten formulier</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,10 +32,23 @@
         .strafbaar-feit button {
             margin-top: 10px;
         }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
-    <button onclick="window.location.href = 'homepagina.html';">Ga naar de homepagina</button>
+    <button onclick="window.location.href = 'index.html';">Ga naar de homepagina</button>
     <h1>Strafbaarheidsformulier</h1>
     <form id="strafbaarheidsForm">
         <div class="form-group">
@@ -171,115 +184,110 @@
     <script>
         let feitCount = 1;
         const wetten = {
-            'wet1': { celstraf: 2, boete: 5000 },
-            'wet2': { celstraf: 5, boete: 15000 },
-            'wet3': { celstraf: 1, boete: 1000 },
-            'wet4': { celstraf: 1, boete: 1000 },
-            'wet5': { celstraf: 15, boete: 5000 },
-            'wet6': { celstraf: 30, boete: 8000 },
-            'wet7': { celstraf: 30, boete: 10000 },
-            'wet8': { celstraf: 65, boete: 16000 },
-            'wet9': { celstraf: 15, boete: 4000 },
-            'wet10': { celstraf: 45, boete: 9000 },
-            'wet11': { celstraf: 34, boete: 16000 },
-            'wet12': { celstraf: 67, boete: 22000 },
-            'wet13': { celstraf: 101, boete: 29000 },
-            'wet14': { celstraf: 3, boete: 3500 },
-            'wet15': { celstraf: 5, boete: 5000 },
-            'wet16': { celstraf: 40, boete: 15000 },
-            'wet17': { celstraf: 70, boete: 19000 },
-            'wet18': { celstraf: 5, boete: 5000 },
-            'wet19': { celstraf: 15, boete: 8000 },
-            'wet20': { celstraf: 65, boete: 15000 },
-            'wet21': { celstraf: 98, boete: 25000 },
-            'wet22': { celstraf: 95, boete: 20000 },
-            'wet23': { celstraf: 123, boete: 30000 },
-            'wet24': { celstraf: 10, boete: 5500 },
-            'wet25': { celstraf: 25, boete: 8000 },
-            'wet26': { celstraf: 30, boete: 5500 },
-            'wet27': { celstraf: 40, boete: 8000 },
-            'wet28': { celstraf: 50, boete: 10000 },
-            'wet29': { celstraf: 5, boete: 4500 },
-            'wet30': { celstraf: 10, boete: 5500 },
-            'wet31': { celstraf: 15, boete: 8000 },
-            'wet32': { celstraf: 25, boete: 5500 },
-            'wet33': { celstraf: 45, boete: 8000 },
-            'wet34': { celstraf: 65, boete: 10000 },
-            'wet35': { celstraf: 30, boete: 8500 },
-            'wet36': { celstraf: 55, boete: 10000 },
-            'wet37': { celstraf: 65, boete: 17000 },
-            'wet38': { celstraf: null, boete: 5500 },
-            'wet39': { celstraf: null, boete: 9500 },
-            'wet40': { celstraf: 10, boete: 4000 },
-            'wet41': { celstraf: 20, boete: 7500 },
-            'wet42': { celstraf: 5, boete: 5000 },
-            'wet43': { celstraf: 10, boete: 6500 },
-            'wet44': { celstraf: 15, boete: 7500 },
-            'wet45': { celstraf: 5, boete: 5500 },
-            'wet46': { celstraf: 15, boete: 7500 },
-            'wet47': { celstraf: null, boete: 1750 },
-            'wet48': { celstraf: null, boete: 3500 },
-            'wet49': { celstraf: null, boete: 2500 },
-            'wet50': { celstraf: null, boete: 2500 },
-            'wet51': { celstraf: null, boete: 2000 },
-            'wet52': { celstraf: null, boete: 1500 },
-            'wet53': { celstraf: null, boete: 1500 },
-            'wet54': { celstraf: null, boete: 3500 },
-            'wet55': { celstraf: null, boete: 5500 },
-            'wet56': { celstraf: null, boete: 1000 },
-            'wet57': { celstraf: null, boete: 1000 },
-            'wet58': { celstraf: 10, boete: 5000 },
-            'wet59': { celstraf: 20, boete: 7500 },
-            'wet60': { celstraf: 60, boete: 10000 },
-            'wet61': { celstraf: 100, boete: 15000 },
-            'wet62': { celstraf: 150, boete: 20000 },
-            'wet63': { celstraf: 200, boete: 35000 },
-            'wet64': { celstraf: 12, boete: 6500 },
-            'wet65': { celstraf: 27, boete: 10000 },
-            'wet66': { celstraf: 60, boete: 15000 },
-            'wet67': { celstraf: 125, boete: 20000 },
-            'wet68': { celstraf: 150, boete: 26000 },
-            'wet69': { celstraf: 180, boete: 35000 },
-            'wet70': { celstraf: 5, boete: 2500 },
-            'wet71': { celstraf: 10, boete: 5000 },
-            'wet72': { celstraf: 25, boete: 7500 },
-            'wet73': { celstraf: 45, boete: 10000 },
-            'wet74': { celstraf: 60, boete: 15000 },
-            'wet75': { celstraf: 85, boete: 19000 },
-            'wet76': { celstraf: 5, boete: 3500 },
-            'wet77': { celstraf: 25, boete: 5000 },
-            'wet78': { celstraf: 50, boete: 8000 },
-            'wet79': { celstraf: 60, boete: 10000 },
-            'wet80': { celstraf: 70, boete: 15000 },
-            'wet81': { celstraf: 100, boete: 25000 },
-            'wet82': { celstraf: 5, boete: 9000 },
-            'wet83': { celstraf: 15, boete: 12500 },
-            'wet84': { celstraf: 25, boete: 15000 },
-            'wet85': { celstraf: 50, boete: 15000 },
-            'wet86': { celstraf: 74, boete: 25000 },
-            'wet87': { celstraf: 90, boete: 25000 },
-            'wet88': { celstraf: 133, boete: 35000 },
-            'wet89': { celstraf: 20, boete: 17500 },
-            'wet90': { celstraf: 40, boete: 30000 },
-            'wet91': { celstraf: 15, boete: 5000 },
-            'wet92': { celstraf: 25, boete: 7500 },
-            'wet93': { celstraf: 15, boete: 3500 },
-            'wet94': { celstraf: 25, boete: 5500 },
-            'wet95': { celstraf: null, boete: 1200 },
-            'wet96': { celstraf: null, boete: 3000 },
-            'wet97': { celstraf: null, boete: 5000 },
-            'wet98': { celstraf: 10, boete: 10000 },
-            'wet99': { celstraf: 20, boete: 15000 },
-            'wet100': { celstraf: 10, boete: 7500 },
-            'wet101': { celstraf: 25, boete: 10000 },
-            'wet102': { celstraf: 10, boete: 2500 },
-            'wet103': { celstraf: 25, boete: 6000 },
-            'wet104': { celstraf: 20, boete: 15000 }
-
-
-
-
-
+            'wet1': { artikelnummer: '1', celstraf: 2, boete: 5000 },
+            'wet2': { artikelnummer: '2', celstraf: 5, boete: 15000 },
+            'wet3': { artikelnummer: '3', celstraf: 1, boete: 1000 },
+            'wet4': { artikelnummer: '3', celstraf: 1, boete: 1000 },
+            'wet5': { artikelnummer: '3', celstraf: 15, boete: 5000 },
+            'wet6': { artikelnummer: '3', celstraf: 30, boete: 8000 },
+            'wet7': { artikelnummer: '3', celstraf: 30, boete: 10000 },
+            'wet8': { artikelnummer: '3', celstraf: 65, boete: 16000 },
+            'wet9': { artikelnummer: '3', celstraf: 15, boete: 4000 },
+            'wet10': { artikelnummer: '3', celstraf: 45, boete: 9000 },
+            'wet11': { artikelnummer: '3', celstraf: 34, boete: 16000 },
+            'wet12': { artikelnummer: '3', celstraf: 67, boete: 22000 },
+            'wet13': { artikelnummer: '3', celstraf: 101, boete: 29000 },
+            'wet14': { artikelnummer: '3', celstraf: 3, boete: 3500 },
+            'wet15': { artikelnummer: '3', celstraf: 5, boete: 5000 },
+            'wet16': { artikelnummer: '3', celstraf: 40, boete: 15000 },
+            'wet17': { artikelnummer: '3', celstraf: 70, boete: 19000 },
+            'wet18': { artikelnummer: '3', celstraf: 5, boete: 5000 },
+            'wet19': { artikelnummer: '3', celstraf: 15, boete: 8000 },
+            'wet20': { artikelnummer: '3', celstraf: 65, boete: 15000 },
+            'wet21': { artikelnummer: '3', celstraf: 98, boete: 25000 },
+            'wet22': { artikelnummer: '3', celstraf: 95, boete: 20000 },
+            'wet23': { artikelnummer: '3', celstraf: 123, boete: 30000 },
+            'wet24': { artikelnummer: '3', celstraf: 10, boete: 5500 },
+            'wet25': { artikelnummer: '3', celstraf: 25, boete: 8000 },
+            'wet26': { artikelnummer: '3', celstraf: 30, boete: 5500 },
+            'wet27': { artikelnummer: '3', celstraf: 40, boete: 8000 },
+            'wet28': { artikelnummer: '3', celstraf: 50, boete: 10000 },
+            'wet29': { artikelnummer: '3', celstraf: 5, boete: 4500 },
+            'wet30': { artikelnummer: '3', celstraf: 10, boete: 5500 },
+            'wet31': { artikelnummer: '3', celstraf: 15, boete: 8000 },
+            'wet32': { artikelnummer: '3', celstraf: 25, boete: 5500 },
+            'wet33': { artikelnummer: '3', celstraf: 45, boete: 8000 },
+            'wet34': { artikelnummer: '3', celstraf: 65, boete: 10000 },
+            'wet35': { artikelnummer: '3', celstraf: 30, boete: 8500 },
+            'wet36': { artikelnummer: '3', celstraf: 55, boete: 10000 },
+            'wet37': { artikelnummer: '3', celstraf: 65, boete: 17000 },
+            'wet38': { artikelnummer: '3', celstraf: null, boete: 5500 },
+            'wet39': { artikelnummer: '3', celstraf: null, boete: 9500 },
+            'wet40': { artikelnummer: '3', celstraf: 10, boete: 4000 },
+            'wet41': { artikelnummer: '3', celstraf: 20, boete: 7500 },
+            'wet42': { artikelnummer: '3', celstraf: 5, boete: 5000 },
+            'wet43': { artikelnummer: '3', celstraf: 10, boete: 6500 },
+            'wet44': { artikelnummer: '3', celstraf: 15, boete: 7500 },
+            'wet45': { artikelnummer: '3', celstraf: 5, boete: 5500 },
+            'wet46': { artikelnummer: '3', celstraf: 15, boete: 7500 },
+            'wet47': { artikelnummer: '3', celstraf: null, boete: 1750 },
+            'wet48': { artikelnummer: '3', celstraf: null, boete: 3500 },
+            'wet49': { artikelnummer: '3', celstraf: null, boete: 2500 },
+            'wet50': { artikelnummer: '3', celstraf: null, boete: 2500 },
+            'wet51': { artikelnummer: '3', celstraf: null, boete: 2000 },
+            'wet52': { artikelnummer: '3', celstraf: null, boete: 1500 },
+            'wet53': { artikelnummer: '3', celstraf: null, boete: 1500 },
+            'wet54': { artikelnummer: '3', celstraf: null, boete: 3500 },
+            'wet55': { artikelnummer: '3', celstraf: null, boete: 5500 },
+            'wet56': { artikelnummer: '3', celstraf: null, boete: 1000 },
+            'wet57': { artikelnummer: '3', celstraf: null, boete: 1000 },
+            'wet58': { artikelnummer: '3', celstraf: 10, boete: 5000 },
+            'wet59': { artikelnummer: '3', celstraf: 20, boete: 7500 },
+            'wet60': { artikelnummer: '3', celstraf: 60, boete: 10000 },
+            'wet61': { artikelnummer: '3', celstraf: 100, boete: 15000 },
+            'wet62': { artikelnummer: '3', celstraf: 150, boete: 20000 },
+            'wet63': { artikelnummer: '3', celstraf: 200, boete: 35000 },
+            'wet64': { artikelnummer: '3', celstraf: 12, boete: 6500 },
+            'wet65': { artikelnummer: '3', celstraf: 27, boete: 10000 },
+            'wet66': { artikelnummer: '3', celstraf: 60, boete: 15000 },
+            'wet67': { artikelnummer: '3', celstraf: 125, boete: 20000 },
+            'wet68': { artikelnummer: '3', celstraf: 150, boete: 26000 },
+            'wet69': { artikelnummer: '3', celstraf: 180, boete: 35000 },
+            'wet70': { artikelnummer: '3', celstraf: 5, boete: 2500 },
+            'wet71': { artikelnummer: '3', celstraf: 10, boete: 5000 },
+            'wet72': { artikelnummer: '3', celstraf: 25, boete: 7500 },
+            'wet73': { artikelnummer: '3', celstraf: 45, boete: 10000 },
+            'wet74': { artikelnummer: '3', celstraf: 60, boete: 15000 },
+            'wet75': { artikelnummer: '3', celstraf: 85, boete: 19000 },
+            'wet76': { artikelnummer: '3', celstraf: 5, boete: 3500 },
+            'wet77': { artikelnummer: '3', celstraf: 25, boete: 5000 },
+            'wet78': { artikelnummer: '3', celstraf: 50, boete: 8000 },
+            'wet79': { artikelnummer: '3', celstraf: 60, boete: 10000 },
+            'wet80': { artikelnummer: '3', celstraf: 70, boete: 15000 },
+            'wet81': { artikelnummer: '3', celstraf: 100, boete: 25000 },
+            'wet82': { artikelnummer: '3', celstraf: 5, boete: 9000 },
+            'wet83': { artikelnummer: '3', celstraf: 15, boete: 12500 },
+            'wet84': { artikelnummer: '3', celstraf: 25, boete: 15000 },
+            'wet85': { artikelnummer: '3', celstraf: 50, boete: 15000 },
+            'wet86': { artikelnummer: '3', celstraf: 74, boete: 25000 },
+            'wet87': { artikelnummer: '3', celstraf: 90, boete: 25000 },
+            'wet88': { artikelnummer: '3', celstraf: 133, boete: 35000 },
+            'wet89': { artikelnummer: '3', celstraf: 20, boete: 17500 },
+            'wet90': { artikelnummer: '3', celstraf: 40, boete: 30000 },
+            'wet91': { artikelnummer: '3', celstraf: 15, boete: 5000 },
+            'wet92': { artikelnummer: '3', celstraf: 25, boete: 7500 },
+            'wet93': { artikelnummer: '3', celstraf: 15, boete: 3500 },
+            'wet94': { artikelnummer: '3', celstraf: 25, boete: 5500 },
+            'wet95': { artikelnummer: '3', celstraf: null, boete: 1200 },
+            'wet96': { artikelnummer: '3', celstraf: null, boete: 3000 },
+            'wet97': { artikelnummer: '3', celstraf: null, boete: 5000 },
+            'wet98': { artikelnummer: '3', celstraf: 10, boete: 10000 },
+            'wet99': { artikelnummer: '3', celstraf: 20, boete: 15000 },
+            'wet100': { artikelnummer: '3', celstraf: 10, boete: 7500 },
+            'wet101': { artikelnummer: '3', celstraf: 25, boete: 10000 },
+            'wet102': { artikelnummer: '3', celstraf: 10, boete: 2500 },
+            'wet103': { artikelnummer: '3', celstraf: 25, boete: 6000 },
+            'wet104': { artikelnummer: '3', celstraf: 20, boete: 15000 }
 };
 
 
@@ -422,8 +430,8 @@ function voegStrafbaarFeitToe() {
     });
 
     const embed = {
-        title: "Strafbare Feiten",
-        description: `De verdachte met Discord ID <@${discordID}> heeft de volgende strafbare feiten begaan:`,
+        title: "Advocatenzaak",
+        description: `De ambtenaar <@${discordID}> Heeft iemand aangehouden voor de volgende dingen:`,
         fields: feiten.map((feit, index) => ({
             name: `Artikel ${feit.artikelnummer}`,
             value: `Celstraf: ${feit.celstraf} maanden, Boete: €${feit.boete}`,

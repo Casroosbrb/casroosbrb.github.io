@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boek 3: Het verschil tussen primaire en secundaire rechten</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #37474f;
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        #datetime {
+            font-size: 18px;
+        }
+        main {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #37474f;
+        }
+        .chapter {
+            background-color: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .chapter:hover {
+            transform: translateY(-5px);
+        }
+        footer {
+            background-color: #37474f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .chapter-content {
+            text-align: left;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="window.location.href = 'index.html';">Ga naar de homepagina</button>
+    <header>
+        <img src="OIP.JPEG" alt="Logo" class="logo"> <!-- Vervang 'logo.png' door de naam van je logo -->
+        <div id="datetime"></div>
+    </header>
+    <main>
+        <h1>Boek 5: Procedure van het schade van je plicht en of plichten als advocaat</h1>
+        <section class="chapter">
+            <h2>Hoofdstuk 1: Wat zijn Primaire Plichten als Advocaat?</h2>
+            <div class="chapter-content">
+                <p>Primaire plichten als advocaat zijn juridische verantwoordelijkheden die voortvloeien uit professionele normen, ethiek en wetgeving die van toepassing zijn op de advocatuur. Deze plichten omvatten onder meer het naleven van vertrouwelijkheid, het handhaven van integriteit en objectiviteit, en het verstrekken van effectieve juridische vertegenwoordiging aan cliënten.</p>
+                <p>Primaire plichten vormen de kern van het advocatenberoep en zijn essentieel voor het bevorderen van rechtvaardigheid en het vertrouwen in het rechtssysteem.</p>
+            </div>
+        </section>
+        <section class="chapter">
+            <h2>Hoofdstuk 2: Wat zijn Secundaire Plichten als Advocaat?</h2>
+            <div class="chapter-content">
+                <p>Secundaire plichten als advocaat zijn afgeleide verantwoordelijkheden die voortkomen uit de uitvoering van primaire plichten en de specifieke omstandigheden van een zaak. Deze plichten kunnen onder meer het bijhouden van nauwkeurige dossiers, het communiceren met cliënten over de voortgang van hun zaken, en het vermijden van belangenconflicten omvatten.</p>
+                <p>Hoewel secundaire plichten afhankelijk zijn van primaire plichten, zijn ze van cruciaal belang voor een effectieve en ethische praktijk als advocaat.</p>
+            </div>
+        </section>
+        <section class="chapter">
+            <h2>Hoofdstuk 3: Procedure van het Schade van Je Plichten als Advocaat</h2>
+            <div class="chapter-content">
+                <p>De procedure van het schade van je plichten als advocaat omvat het identificeren van vermeende schendingen van professionele normen, het onderzoeken van de omvang van de schade die is veroorzaakt door dergelijke schendingen, en het nemen van passende juridische stappen om eventuele schade te verhelpen.</p>
+                <p>Dit kan onder meer het indienen van disciplinaire klachten bij de toezichthoudende autoriteiten, het verlenen van schadevergoeding aan benadeelde cliënten, of het verdedigen tegen beschuldigingen van plichtsverzuim omvatten.</p>
+            </div>
+        </section>
+        <section class="chapter">
+            <h2>Hoofdstuk 4: Het Belang van Het Nakomen van Plichten als Advocaat</h2>
+            <div class="chapter-content">
+                <p>Het nakomen van plichten als advocaat is essentieel voor het handhaven van de integriteit van het rechtssysteem, het beschermen van de rechten van cliënten en het bevorderen van vertrouwen in de advocatuur. Het waarborgt eerlijke en effectieve juridische vertegenwoordiging en draagt bij aan een rechtvaardige samenleving.</p>
+                <p>Door verantwoordelijkheid te nemen voor hun plichten als advocaat, kunnen juridische professionals bijdragen aan het handhaven van hoge ethische normen en het beschermen van de belangen van degenen die zij vertegenwoordigen.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2024 Mijn Website. Alle rechten voorbehouden.
+    </footer>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const date = now.toLocaleDateString('nl-NL', options);
+            const time = now.toLocaleTimeString('nl-NL');
+            document.getElementById('datetime').textContent = `${date} ${time}`;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
