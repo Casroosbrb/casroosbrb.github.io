@@ -4,95 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advocaat Diensten</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-image: url('OIsssssP.jpeg'); /* Vervang 'background.jpg' door de naam van je achtergrondafbeelding */
-            background-size: cover;
-            background-position: center;
-            overflow: hidden; /* Om scrollen uit te schakelen */
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f0f0;
+            overflow: hidden;
         }
+
+        /* Header styling */
         header {
-            background-color: rgba(255, 255, 255, 0.7); /* Achtergrondkleur met transparantie */
+            background-color: rgba(255, 255, 255, 0.85);
             padding: 20px;
             text-align: center;
             position: fixed;
+            top: 0;
             width: 100%;
-            z-index: 9999; /* Zorgt ervoor dat de header boven alles staat */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
         }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        /* Main content styling */
         main {
-            padding-top: 100px; /* Ruimte voor de header */
+            padding-top: 120px;
             text-align: center;
+            color: #fff;
         }
+
+        /* Dropdown styling */
         .dropdown {
             position: relative;
             display: inline-block;
+            margin-top: 50px;
         }
+
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .dropbtn:hover {
+            background-color: #45a049;
+        }
+
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 1;
+            border-radius: 4px;
         }
+
         .dropdown-content a {
-            color: black;
+            color: #333;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
         }
+
         .dropdown-content a:hover {
             background-color: #f1f1f1;
         }
+
         .dropdown:hover .dropdown-content {
             display: block;
         }
-        .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
+
+        /* Logo styling */
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 60px;
+            z-index: 999;
         }
-        .dropbtn {
-    margin-top: 50px; /* Verticale afstand vanaf de bovenkant van het scherm */
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s; /* Overgangseffect toevoegen */
-}
-        .dropbtn:hover, .dropbtn:focus {
-            background-color: #45a049; /* Kleur veranderen bij hover */
-        }
-        /* Video op de achtergrond */
+
+        /* Video background styling */
         #video-container {
             position: fixed;
-            right: 0;
-            bottom: 0;
+            top: 0;
+            left: 0;
             min-width: 100%;
             min-height: 100%;
             z-index: -1;
             overflow: hidden;
         }
+
         video {
             position: absolute;
             top: 50%;
             left: 50%;
             min-width: 100%;
             min-height: 100%;
-            width: auto;
-            height: auto;
             transform: translate(-50%, -50%);
             z-index: -1;
+            filter: brightness(60%); /* Donkerder maken zodat tekst beter leesbaar is */
         }
-        .logo {
-            position: absolute;
-            top: 20px; /* Afstand vanaf de bovenkant van het venster */
-            left: 20px; /* Afstand vanaf de linkerzijde van het venster */
-            z-index: 999; /* Zorgt ervoor dat het logo bovenaan staat */
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 18px;
+            }
+
+            .dropbtn {
+                font-size: 14px;
+                padding: 12px 16px;
+            }
+
+            .dropdown-content a {
+                font-size: 12px;
+                padding: 10px 12px;
+            }
         }
     </style>
 </head>
@@ -107,14 +150,14 @@
             <div class="dropdown-content">
                 <a href="advnodig.html">Formulier</a>
                 <a href="formulier.html">Prijs berekenen</a>
-                <a href="doorverwijzing.html">wetboek</a>
+                <a href="doorverwijzing.html">Wetboek</a>
                 <a href="informatie.html">Informatie</a>
                 <a href="odoo.html">Werknemersbestand</a>
                 <a href="trainingen.html">Trainingen</a>
                 <a href="examenkeuze.html">Toetsen</a>
-                <a href="zoho.html">Zoho voor clienten</a>
+                <a href="zoho.html">Zoho voor cliënten</a>
                 <a href="beheerzoho.html">Zoho voor Admin</a>
-                <a href="clientenportaal.html">clientenportaal</a>
+                <a href="clientenportaal.html">Cliëntenportaal</a>
             </div>
         </div>
     </main>
@@ -122,10 +165,8 @@
     <!-- Video's met geluid -->
     <div id="video-container">
         <video id="bg-video" autoplay loop muted>
-            <!-- Vervang de volgende lijnen met de paden naar je video's -->
             <source src="video1.mp4" type="video/mp4">
             <source src="video3.mp4" type="video/mp4">
-            <!-- Voeg extra <source> tags toe voor meer video's -->
             Your browser does not support the video tag.
         </video>
     </div>
