@@ -1,0 +1,288 @@
+<form id="governmentForm" style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f7f7f7; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"></form>
+    <label for="job" style="font-weight: bold; margin-bottom: 5px; display: block;">Selecteer de functie waarop je wilt solliciteren:</label>
+    <select id="job" name="job" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+        <option value="" disabled selected>Kies een functie</option>
+        <option value="job1">politiebeambte</option>
+        <option value="job2">ambulancier</option>
+        <option value="job3">Pechhulp</option>
+        <option value="job4">rechtbank</option>
+        <option value="job5">advocaat</option>
+    </select>
+
+    <label for="name" style="font-weight: bold; margin-bottom: 5px; display: block;">Naam (IC):</label>
+    <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+    
+        <label for="dname" style="font-weight: bold; margin-bottom: 5px; display: block;">Naam (discord:</label>
+    <input type="text" id="dname" name="dname" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+
+    <label for="email" style="font-weight: bold; margin-bottom: 5px; display: block;">E-mailadres:</label>
+    <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+
+    <label for="phone" style="font-weight: bold; margin-bottom: 5px; display: block;">Telefoonnummer:</label>
+    <input type="tel" id="phone" name="phone" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+
+    <label for="address" style="font-weight: bold; margin-bottom: 5px; display: block;">Adres: (indien huisadres in de stad)</label>
+    <input type="text" id="address" name="address" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+
+    <label for="education" style="font-weight: bold; margin-bottom: 5px; display: block;">heb jij je vog?:</label>
+<select id="education" name="education" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+    <option value="" disabled selected>Heb jij een VOG?</option>
+    <option value="10 uur per week">Ja ik heb deze</option>
+    <option value="20 uur per week">Nee/nog niet aangevraagd</option>
+    <option value="meer uur per week">Ja, maar een aanwijzingsVOG</option>
+</select>
+
+    <label for="experience" style="font-weight: bold; margin-bottom: 5px; display: block;">Werkervaring:</label>
+    <textarea id="experience" name="experience" rows="4" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+    <label for="skills" style="font-weight: bold; margin-bottom: 5px; display: block;">Vaardigheden:</label>
+    <textarea id="skills" name="skills" rows="4" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+    <label for="motivation" style="font-weight: bold; margin-bottom: 5px; display: block;">Waarom ben jij geschikt voor deze functie?</label>
+    <textarea id="motivation" name="motivation" rows="4" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+<label for="availability" style="font-weight: bold; margin-bottom: 5px; display: block;">Beschikbaarheid:</label>
+<select id="availability" name="availability" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+    <option value="" disabled selected>Kies uw beschikbaarheid</option>
+    <option value="10 uur per week">10 uur per week</option>
+    <option value="20 uur per week">20 uur per week</option>
+    <option value="meer uur per week">Meer uur per week</option>
+</select>
+
+    <input type="submit" value="Verstuur" style="width: 100%; background-color: #007bff; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+
+    <style>
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</form>
+
+<script>
+document.getElementById('governmentForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Voorkomt het standaard verzenden van het formulier
+
+    const job = document.getElementById('job').value;
+    const name = document.getElementById('name').value;
+    const dname = document.getElementById('dname').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    const education = document.getElementById('education').value;
+    const experience = document.getElementById('experience').value;
+    const skills = document.getElementById('skills').value;
+    const motivation = document.getElementById('motivation').value;
+    const availability = document.getElementById('availability').value;
+
+    let webhookUrl;
+
+    // Koppel de juiste webhook-URL aan de geselecteerde baan
+    switch (job) {
+        case 'job1':
+            webhookUrl = 'https://discord.com/api/webhooks/1282354649101504626/39CHjaVczF56Ow4fFA2DQYP_A69LxC4hkWRws2anGYDdyaEOmq53S1NzkhQCLJXufSLH';
+            break;
+        case 'job2':
+            webhookUrl = 'https://discord.com/api/webhooks/1282354306183594056/IlA980yTIc1MeLHh34MZiiQxLwowb69ih3iojXdYiNWssJXnNhxn4-Wv0LmOcqgmQich';
+            break;
+        case 'job3':
+            webhookUrl = 'https://discord.com/api/webhooks/1282354475851583498/k4DKyV-Z54izJ8P050tn57vAgf7S__FOlIHMknG5wBHu2O1mQfQ9DxGEQG5cYOIR77Uv';
+            break;
+        case 'job4':
+            webhookUrl = 'https://discord.com/api/webhooks/1282355268205678724/cHz9ztY_CCEK48JJsFp38yGVFLOUPQPK59tBqSeroNqCQvC0122x2zybWlpOJ8115NNt';
+            break;
+        case 'job5':
+            webhookUrl = 'https://discord.com/api/webhooks/1282355268205678724/cHz9ztY_CCEK48JJsFp38yGVFLOUPQPK59tBqSeroNqCQvC0122x2zybWlpOJ8115NNt';
+            break;
+        default:
+            alert('Selecteer een geldige functie.');
+            return;
+    }
+
+    // Bouw de embed content op voor Discord
+    const embedContent = {
+        "embeds": [{
+            "title": "Nieuwe Sollicitatie",
+            "color": 3447003, // Kleur in hex, bv. blauw
+            "fields": [
+                {
+                    "name": "Functie",
+                    "value": document.querySelector('#job option:checked').text,
+                    "inline": false
+                },
+                {
+                    "name": "Naam",
+                    "value": name,
+                    "inline": false
+                },
+                {
+                    "name": "discordnaam",
+                    "value": dname,
+                    "inline": false
+                },
+                {
+                    "name": "E-mailadres",
+                    "value": email,
+                    "inline": false
+                },
+                {
+                    "name": "Telefoonnummer",
+                    "value": phone,
+                    "inline": false
+                },
+                {
+                    "name": "Adres",
+                    "value": address,
+                    "inline": false
+                },
+                {
+                    "name": "Opleidingsniveau",
+                    "value": education,
+                    "inline": false
+                },
+                {
+                    "name": "Werkervaring",
+                    "value": experience,
+                    "inline": false
+                },
+                {
+                    "name": "Vaardigheden",
+                    "value": skills,
+                    "inline": false
+                },
+                {
+                    "name": "Motivatie",
+                    "value": motivation,
+                    "inline": false
+                },
+                {
+                    "name": "Beschikbaarheid",
+                    "value": availability,
+                    "inline": false
+                }
+            ]
+        }]
+    };
+
+    // Verstuur de data naar de juiste Discord webhook
+    fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(embedContent)
+    }).then(response => {
+        if (response.ok) {
+            // Verstuur het @everyone bericht apart
+            sendEveryoneNotification(webhookUrl);
+
+            // Genereer een netter document en download dit
+            generateAndDownloadDocument({
+                job: document.querySelector('#job option:checked').text,
+                name: name,
+                dname: dname,
+                email: email,
+                phone: phone,
+                address: address,
+                education: education,
+                experience: experience,
+                skills: skills,
+                motivation: motivation,
+                availability: availability
+            });
+
+            // Reset het formulier na succesvolle verzending
+            document.getElementById('governmentForm').reset();
+        } else {
+            alert('Er is een fout opgetreden bij het versturen van je bericht.');
+        }
+    }).catch(error => {
+        alert('Er is een fout opgetreden: ' + error.message);
+    });
+});
+
+// Functie voor het verzenden van het @everyone bericht
+function sendEveryoneNotification(webhookUrl) {
+    const everyoneMessage = {
+        "content": "@everyone Nieuwe sollicitatie is binnen!"
+    };
+
+    fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(everyoneMessage)
+    }).then(response => {
+        if (!response.ok) {
+            alert('Er is een fout opgetreden bij het versturen van het @everyone bericht.');
+        }
+    }).catch(error => {
+        alert('Er is een fout opgetreden: ' + error.message);
+    });
+}
+
+// Functie voor het genereren van een net document
+function generateAndDownloadDocument(data) {
+    const docContent = `
+        Sollicitatie voor ${data.job}
+
+        Naam: ${data.name}
+        Discordnaam: ${data.dname}
+        E-mailadres: ${data.email}
+        Telefoonnummer: ${data.phone}
+        Adres: ${data.address}
+
+        ---------------
+        Inleiding:
+        ---------------
+        Hierbij dien ik mijn sollicitatie in voor de functie van ${data.job}. Hieronder volgt een overzicht van mijn werkervaring, vaardigheden, en motivatie voor deze positie.
+
+        ---------------
+        1. Persoonlijke Gegevens:
+        ---------------
+        - Naam: ${data.name}
+        - Discordnaam: ${data.dname}
+        - E-mailadres: ${data.email}
+        - Telefoonnummer: ${data.phone}
+        - Adres: ${data.address}
+
+        ---------------
+        2. Opleidingsniveau:
+        ---------------
+        - Heb jij een VOG?: ${data.education}
+
+        ---------------
+        3. Werkervaring:
+        ---------------
+        ${data.experience}
+
+        ---------------
+        4. Vaardigheden:
+        ---------------
+        ${data.skills}
+
+        ---------------
+        5. Motivatie:
+        ---------------
+        ${data.motivation}
+
+        ---------------
+        6. Beschikbaarheid:
+        ---------------
+        - Beschikbaarheid: ${data.availability}
+    `;
+
+    const blob = new Blob([docContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `sollicitatie_${data.name.replace(/ /g, '_')}.txt`;
+    document.body.appendChild(a);
+    a.click();
+
+    // Verwijder de link na het downloaden
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+</script>
