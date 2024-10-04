@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy Invoer - Verhuurbedrijf</title>
+    <title>Document Invoer - Verhuurbedrijf</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,6 +28,22 @@
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
+        }
+        .home-button {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background-color: #ffffff;
+            color: #35424a;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .home-button:hover {
+            background-color: #45a049;
+            color: #ffffff;
         }
         button {
             background-color: #4CAF50;
@@ -54,10 +70,21 @@
     </style>
 </head>
 <body>
-
+    <header>
+        <h1>Documenten maken</h1>
+        <a href="index.html" class="home-button">Home</a>
+    </header>
     <div class="form-container">
-        <h1>Vul uw Gegevens In voor Privacy Policy</h1>
+        <h1>Vul uw Gegevens In voor Documenten</h1>
         <form id="data-form">
+            <label for="documentType">Kies Documenttype:</label>
+            <select id="documentType" required>
+                <option value="privacyPolicy">Privacy Policy</option>
+                <option value="algemeneVoorwaarden">Algemene Voorwaarden</option>
+                <option value="huurovereenkomst">Huurovereenkomst</option>
+                <!-- Voeg hier meer documenttypes toe als dat nodig is -->
+            </select>
+
             <label for="bedrijf">Naam van het Verhuurbedrijf:</label>
             <input type="text" id="bedrijf" required>
 
@@ -76,91 +103,133 @@
             <label for="geboortedatum">Geboortedatum:</label>
             <input type="date" id="geboortedatum" required>
 
-            <label for="doel">Doel van Gegevensverzameling:</label>
-            <textarea id="doel" rows="4" required></textarea>
+            <div id="extraFields"></div>
 
-            <label for="gegevensverwerking">Soorten Gegevens die Worden Verwerkt:</label>
-            <textarea id="gegevensverwerking" rows="4" required></textarea>
-
-            <label for="bewaarperiode">Bewaarperiode van Gegevens:</label>
-            <input type="text" id="bewaarperiode" required>
-
-            <label for="derde_partijen">Derde Partijen die Toegang Hebben tot Gegevens:</label>
-            <textarea id="derde_partijen" rows="4"></textarea>
-
-            <label for="rechten">Rechten van de Klanten:</label>
-            <textarea id="rechten" rows="4" required></textarea>
-
-            <label for="opmerkingen">Opmerkingen:</label>
-            <textarea id="opmerkingen" rows="4"></textarea>
-
-            <button type="submit">Download Privacy Policy</button>
+            <button type="submit">Download Document</button>
         </form>
         <div class="message" id="message"></div>
     </div>
 
     <script>
+        const documentTypeSelect = document.getElementById('documentType');
+        const extraFieldsDiv = document.getElementById('extraFields');
+
+        documentTypeSelect.addEventListener('change', function() {
+            const selectedType = this.value;
+            extraFieldsDiv.innerHTML = '';
+
+            if (selectedType === 'privacyPolicy') {
+                extraFieldsDiv.innerHTML += `
+                    <label for="doel">Doel van Gegevensverzameling:</label>
+                    <textarea id="doel" rows="4" required></textarea>
+
+                    <label for="gegevensverwerking">Soorten Gegevens die Worden Verwerkt:</label>
+                    <textarea id="gegevensverwerking" rows="4" required></textarea>
+
+                    <label for="bewaarperiode">Bewaarperiode van Gegevens:</label>
+                    <input type="text" id="bewaarperiode" required>
+
+                    <label for="derde_partijen">Derde Partijen die Toegang Hebben tot Gegevens:</label>
+                    <textarea id="derde_partijen" rows="4"></textarea>
+
+                    <label for="rechten">Rechten van de Klanten:</label>
+                    <textarea id="rechten" rows="4" required></textarea>
+
+                    <label for="opmerkingen">Opmerkingen:</label>
+                    <textarea id="opmerkingen" rows="4"></textarea>
+                `;
+            } else if (selectedType === 'algemeneVoorwaarden') {
+                extraFieldsDiv.innerHTML += `
+                    <label for="voorwaarden">Vul de Algemene Voorwaarden In:</label>
+                    <textarea id="voorwaarden" rows="10" required></textarea>
+                `;
+            } else if (selectedType === 'huurovereenkomst') {
+                extraFieldsDiv.innerHTML += `
+                    <label for="huurder">Naam van de Huurder:</label>
+                    <input type="text" id="huurder" required>
+
+                    <label for="huurovereenkomstDetails">Details van de Huurovereenkomst:</label>
+                    <textarea id="huurovereenkomstDetails" rows="10" required></textarea>
+                `;
+            }
+        });
+
         document.getElementById('data-form').addEventListener('submit', function(e) {
             e.preventDefault(); // Voorkomt dat het formulier normaal wordt verzonden
 
-            // Haal de waarden uit de invoervelden
             const bedrijf = document.getElementById('bedrijf').value;
             const naam = document.getElementById('naam').value;
             const email = document.getElementById('email').value;
             const telefoon = document.getElementById('telefoon').value;
             const adres = document.getElementById('adres').value;
             const geboortedatum = document.getElementById('geboortedatum').value;
-            const doel = document.getElementById('doel').value;
-            const gegevensverwerking = document.getElementById('gegevensverwerking').value;
-            const bewaarperiode = document.getElementById('bewaarperiode').value;
-            const derde_partijen = document.getElementById('derde_partijen').value;
-            const rechten = document.getElementById('rechten').value;
-            const opmerkingen = document.getElementById('opmerkingen').value;
+            const documentType = documentTypeSelect.value;
 
-            // Creëer de inhoud van de privacy policy met nettere opmaak
-            const fileContent = `
-            ===================================
-            Privacy Policy voor ${bedrijf}
-            ===================================
+            let fileContent = `Documenttype: ${documentType}\n`;
+            fileContent += `===================================\n`;
+            fileContent += `Naam van het Verhuurbedrijf: ${bedrijf}\n`;
+            fileContent += `Volledige Naam: ${naam}\n`;
+            fileContent += `E-mailadres: ${email}\n`;
+            fileContent += `Telefoonnummer: ${telefoon}\n`;
+            fileContent += `Adres: ${adres}\n`;
+            fileContent += `Geboortedatum: ${geboortedatum}\n`;
 
-            Volledige Naam: ${naam}
-            E-mailadres: ${email}
-            Telefoonnummer: ${telefoon}
-            Adres: ${adres}
-            Geboortedatum: ${geboortedatum}
+            if (documentType === 'privacyPolicy') {
+                const doel = document.getElementById('doel').value;
+                const gegevensverwerking = document.getElementById('gegevensverwerking').value;
+                const bewaarperiode = document.getElementById('bewaarperiode').value;
+                const derde_partijen = document.getElementById('derde_partijen').value || 'Geen derden betrokken.';
+                const rechten = document.getElementById('rechten').value;
+                const opmerkingen = document.getElementById('opmerkingen').value || 'Geen opmerkingen.';
 
-            Doel van Gegevensverzameling:
-            ${doel}
+                fileContent += `
+                Doel van Gegevensverzameling:
+                ${doel}
 
-            Soorten Gegevens die Worden Verwerkt:
-            ${gegevensverwerking}
+                Soorten Gegevens die Worden Verwerkt:
+                ${gegevensverwerking}
 
-            Bewaarperiode van Gegevens:
-            ${bewaarperiode}
+                Bewaarperiode van Gegevens:
+                ${bewaarperiode}
 
-            Derde Partijen die Toegang Hebben tot Gegevens:
-            ${derde_partijen ? derde_partijen : 'Geen derden betrokken.'}
+                Derde Partijen die Toegang Hebben tot Gegevens:
+                ${derde_partijen}
 
-            Rechten van de Klanten:
-            ${rechten}
+                Rechten van de Klanten:
+                ${rechten}
 
-            Opmerkingen:
-            ${opmerkingen ? opmerkingen : 'Geen opmerkingen.'}
+                Opmerkingen:
+                ${opmerkingen}
+                `.trim();
+            } else if (documentType === 'algemeneVoorwaarden') {
+                const voorwaarden = document.getElementById('voorwaarden').value;
 
-            ===================================
-            Dit document is een verklaring van de privacypraktijken van ${bedrijf} en is bedoeld om klanten te informeren over hoe hun gegevens worden verwerkt.
-            `.trim();
+                fileContent += `
+                Algemene Voorwaarden:
+                ${voorwaarden}
+                `.trim();
+            } else if (documentType === 'huurovereenkomst') {
+                const huurder = document.getElementById('huurder').value;
+                const huurovereenkomstDetails = document.getElementById('huurovereenkomstDetails').value;
+
+                fileContent += `
+                Naam van de Huurder: ${huurder}
+
+                Details van de Huurovereenkomst:
+                ${huurovereenkomstDetails}
+                `.trim();
+            }
 
             // Maak een blob van de inhoud
             const blob = new Blob([fileContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = 'privacy_policy.txt'; // Naam van het te downloaden bestand
+            link.download = `${documentType}.txt`; // Naam van het te downloaden bestand
             link.click(); // Simuleer een klik op de link om het downloaden te starten
 
             // Toon een succesbericht
-            document.getElementById('message').innerHTML = "<p class='success'>Privacy policy succesvol aangemaakt en gedownload.</p>";
+            document.getElementById('message').innerHTML = "<p class='success'>Document succesvol aangemaakt en gedownload.</p>";
         });
     </script>
 </body>
