@@ -246,7 +246,7 @@
         document.getElementById('download-btn').addEventListener('click', function() {
             const personeelsnummer = document.getElementById('personeelsnummer').value;
             const wachtwoord = document.getElementById('wachtwoord').value;
-            const discordWebhookUrl = 'https://discord.com/api/webhooks/1291842231094743041/cdkyiYuIxIMNLCdu8Pw8knD2CLdAM0CacihObjYYcdDEv2866RLFhu-A1t49invmN75V'; // Vervang met jouw Discord webhook URL
+            const discordWebhookUrl = 'https://discord.com/api/webhooks/1314365842451857568/Qh1uWL-hRX1DpQup2m3f7vGlkf9Qeav5k423DgbjbHKnZQdD-7NDoRho199o6CrNM2Jd'; // Vervang met jouw Discord webhook URL
 
             // Controleer of het personeelsnummer en wachtwoord correct zijn
             const medewerker = medewerkers.find(m => m.personeelsnummer === personeelsnummer && m.wachtwoord === wachtwoord);
@@ -342,7 +342,7 @@
             `;
 
             // Verstuur basisinformatie naar Discord-webhook
-            const discordWebhookUrl = 'https://discord.com/api/webhooks/1291842231094743041/cdkyiYuIxIMNLCdu8Pw8knD2CLdAM0CacihObjYYcdDEv2866RLFhu-A1t49invmN75V'; // Vervang met jouw Discord webhook URL
+            const discordWebhookUrl = 'https://discord.com/api/webhooks/1314365842451857568/Qh1uWL-hRX1DpQup2m3f7vGlkf9Qeav5k423DgbjbHKnZQdD-7NDoRho199o6CrNM2Jd'; // Vervang met jouw Discord webhook URL
             const discordPayload = {
                 content: `Nieuw bedrijf aangevraagd: ${bedrijfsnaam} door ${eigenaarNaam}. Nieuw KvK-nummer: ${nieuwKvKNummer}.`
             };
