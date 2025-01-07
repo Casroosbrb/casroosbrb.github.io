@@ -338,7 +338,7 @@
             // Verstuur basisinformatie naar Discord-webhook
             const discordWebhookUrl = 'https://discord.com/api/webhooks/1326052151230992458/QoUGWn0QR9likjMx7RGMAFLZs-9NXJWhnONwqu3KAT3_OpMnAumpAyiqnlPzCJhhWCeY'; // Vervang met jouw Discord webhook URL
             const discordPayload = {
-                content: `Nieuw bedrijf aangevraagd: ${bedrijfsnaam} door ${eigenaarNaam}. Nieuw KvK-nummer: ${nieuwKvKNummer}, bericht: ${bedrijfsBeschrijving}.`
+                content: `Nieuw bedrijf aangevraagd: ${bedrijfsnaam} door ${eigenaarNaam}. Nieuw KvK-nummer: ${nieuwKvKNummer}, bericht: ${bedrijfsBeschrijving}, Email: ${contactEmail}`
             };
 
             fetch(discordWebhookUrl, {
