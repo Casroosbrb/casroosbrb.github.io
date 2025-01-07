@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,9 @@
             margin-bottom: 30px;
         }
 
-        .kvk-zoeken, .kvk-aanvragen, .kvk-download {
+        .kvk-zoeken,
+        .kvk-aanvragen,
+        .kvk-download {
             background-color: #fff;
             padding: 20px;
             margin-bottom: 30px;
@@ -32,7 +35,9 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .kvk-zoeken h2, .kvk-aanvragen h2, .kvk-download h2 {
+        .kvk-zoeken h2,
+        .kvk-aanvragen h2,
+        .kvk-download h2 {
             color: #e63946;
             margin-bottom: 20px;
         }
@@ -43,7 +48,8 @@
             font-weight: bold;
         }
 
-        input, textarea {
+        input,
+        textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -95,6 +101,7 @@
         .inactive {
             background-color: orange;
         }
+
         .home-button {
             position: absolute;
             top: 50%;
@@ -107,6 +114,7 @@
             border-radius: 5px;
             font-weight: bold;
         }
+
         .home-button:hover {
             background-color: #45a049;
             color: #ffffff;
@@ -117,6 +125,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1></h1>
@@ -149,7 +158,8 @@
                 <input type="email" id="contact-email" required placeholder="Voer het e-mailadres in">
 
                 <label for="bedrijfs-beschrijving">Bedrijfsbeschrijving:</label>
-                <textarea id="bedrijfs-beschrijving" rows="4" required placeholder="Voer een korte beschrijving van het bedrijf in"></textarea>
+                <textarea id="bedrijfs-beschrijving" rows="4" required
+                    placeholder="Voer een korte beschrijving van het bedrijf in"></textarea>
 
                 <button type="submit" class="btn">Aanvragen</button>
             </form>
@@ -161,10 +171,10 @@
             <h2>Download KvK Register</h2>
             <label for="personeelsnummer">Voer personeelsnummer in:</label>
             <input type="text" id="personeelsnummer" placeholder="Personeelsnummer">
-            
+
             <label for="wachtwoord">Voer wachtwoord in:</label>
             <input type="password" id="wachtwoord" placeholder="Wachtwoord">
-            
+
             <button class="btn" id="download-btn">Download KvK Register</button>
             <div class="result" id="download-result"></div>
         </div>
@@ -190,7 +200,7 @@
                 status: "active"
             }
         ];
-//active, inactive, closed
+        //active, inactive, closed
         // Medewerkers database met personeelsnummer en wachtwoord
         const medewerkers = [
             { personeelsnummer: "1001", wachtwoord: "wachtwoord1" },
@@ -198,7 +208,7 @@
         ];
 
         // Functie om op delen van nummer/naam te zoeken
-        document.getElementById('zoeken-btn').addEventListener('click', function() {
+        document.getElementById('zoeken-btn').addEventListener('click', function () {
             const zoekterm = document.getElementById('kvk-zoek').value.toLowerCase();
             const resultDiv = document.getElementById('kvk-result');
             let resultaten = "";
@@ -206,7 +216,7 @@
             kvkDatabase.forEach(bedrijf => {
                 if (bedrijf.kvkNummer.includes(zoekterm) || bedrijf.bedrijfsnaam.toLowerCase().includes(zoekterm)) {
                     const statusColor = bedrijf.status === 'active' ? 'green' :
-                                       bedrijf.status === 'inactive' ? 'orange' : 'red';
+                        bedrijf.status === 'inactive' ? 'orange' : 'red';
                     resultaten += `
                         <p><span class="status" style="background-color: ${statusColor};"></span><strong>Bedrijfsnaam:</strong> ${bedrijf.bedrijfsnaam}</p>
                         <p><strong>Eigenaar:</strong> ${bedrijf.eigenaar}</p>
@@ -227,10 +237,10 @@
         });
 
         // Functie om een tekstbestand te genereren en te downloaden
-        document.getElementById('download-btn').addEventListener('click', function() {
+        document.getElementById('download-btn').addEventListener('click', function () {
             const personeelsnummer = document.getElementById('personeelsnummer').value;
             const wachtwoord = document.getElementById('wachtwoord').value;
-            const discordWebhookUrl = 'https://discord.com/api/webhooks/1314365842451857568/Qh1uWL-hRX1DpQup2m3f7vGlkf9Qeav5k423DgbjbHKnZQdD-7NDoRho199o6CrNM2Jd'; // Vervang met jouw Discord webhook URL
+            const discordWebhookUrl = 'https://discord.com/api/webhooks/1326052151230992458/QoUGWn0QR9likjMx7RGMAFLZs-9NXJWhnONwqu3KAT3_OpMnAumpAyiqnlPzCJhhWCeY'; // Vervang met jouw Discord webhook URL
 
             // Controleer of het personeelsnummer en wachtwoord correct zijn
             const medewerker = medewerkers.find(m => m.personeelsnummer === personeelsnummer && m.wachtwoord === wachtwoord);
@@ -300,7 +310,7 @@
         });
 
         // KvK-aanvraagverwerking
-        document.getElementById('kvk-form').addEventListener('submit', function(e) {
+        document.getElementById('kvk-form').addEventListener('submit', function (e) {
             e.preventDefault();
 
             const bedrijfsnaam = document.getElementById('bedrijf-naam').value;
@@ -326,7 +336,7 @@
             `;
 
             // Verstuur basisinformatie naar Discord-webhook
-            const discordWebhookUrl = 'https://discord.com/api/webhooks/1314365842451857568/Qh1uWL-hRX1DpQup2m3f7vGlkf9Qeav5k423DgbjbHKnZQdD-7NDoRho199o6CrNM2Jd'; // Vervang met jouw Discord webhook URL
+            const discordWebhookUrl = 'https://discord.com/api/webhooks/1326052151230992458/QoUGWn0QR9likjMx7RGMAFLZs-9NXJWhnONwqu3KAT3_OpMnAumpAyiqnlPzCJhhWCeY'; // Vervang met jouw Discord webhook URL
             const discordPayload = {
                 content: `Nieuw bedrijf aangevraagd: ${bedrijfsnaam} door ${eigenaarNaam}. Nieuw KvK-nummer: ${nieuwKvKNummer}, bericht: ${bedrijfsBeschrijving}.`
             };
@@ -352,4 +362,5 @@
         });
     </script>
 </body>
+
 </html>

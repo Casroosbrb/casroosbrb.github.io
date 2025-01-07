@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepagina van Amsterstad Roleplay</title>
+    <title>Homepagina van Matrix Roleplay</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -118,7 +119,8 @@
             min-height: 100%;
             transform: translate(-50%, -50%);
             z-index: -1;
-            filter: brightness(60%); /* Donkerder maken zodat tekst beter leesbaar is */
+            filter: brightness(60%);
+            /* Donkerder maken zodat tekst beter leesbaar is */
         }
 
         /* Responsive design */
@@ -139,6 +141,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <img src="OIP.jpeg" alt="Logo" class="logo"> <!-- Vervang 'logo.png' door de naam van je logo -->
@@ -175,12 +178,13 @@
     <script>
         // Array met de paden naar de video's
         var videos = ["video1.mp4", "video3.mp4"];
-        
+
         // Kies willekeurig een video uit de array
         var randomVideo = videos[Math.floor(Math.random() * videos.length)];
-        
+
         // Vervang de bron van de video
         document.getElementById("bg-video").src = randomVideo;
     </script>
 </body>
+
 </html>
